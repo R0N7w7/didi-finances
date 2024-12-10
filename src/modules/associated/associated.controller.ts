@@ -35,6 +35,20 @@ router.get('/:id', validateParams(idSchema), async (req, res, next) => {
     }
 });
 
+// GET: Obtener un asociado por ID
+router.get('/:id/checks', validateParams(idSchema), async (req, res, next) => {
+    try {
+        const { id } = req.params;
+        const associated = await associatedService.getOneWithChecks(parseInt(id));
+        if (!associated) {
+            throw Boom.notFound("Associated entity not found");
+        }
+        successResponse(res, associated);
+    } catch (error) {
+        next(error);
+    }
+});
+
 // POST: Crear un nuevo asociado con validación
 router.post('/', validate(createAssociatedSchema), async (req, res, next) => {
     try {

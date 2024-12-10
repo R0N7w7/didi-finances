@@ -1,13 +1,17 @@
+import cors from 'cors';
 import express from 'express';
+import { errorHandler } from './modules/common/middlewares/error.middleware';
 import prisma from './modules/common/prisma';
 import { appRouter } from './rest/router';
-import { errorHandler } from './modules/common/middlewares/error.middleware';
 
 // Inicialización de Prisma Client
 
 // Inicializar Express
 const app = express();
 const port = process.env.PORT || 5000;
+
+//cors
+app.use(cors());
 
 // Middleware
 app.use(express.json()); // Para parsear JSON

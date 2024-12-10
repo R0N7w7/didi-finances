@@ -12,7 +12,11 @@ export class CheckService {
     }
 
     async getAll() {
-        return await this.Prisma.check.findMany();
+        return await this.Prisma.check.findMany({
+            orderBy: {
+                createdAt: "desc"
+            }
+        });
     }
 
     async getOne(id: number) {

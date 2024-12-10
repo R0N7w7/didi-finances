@@ -8,6 +8,7 @@ export class CreateCheckDto {
     area: string;
     observations?: string;
     receiver: string;
+    deliveredBy: string;
     associatedId: number;
 
     constructor(
@@ -19,6 +20,7 @@ export class CreateCheckDto {
         part: string,
         area: string,
         receiver: string,
+        deliveredBy: string,
         associatedId: number,
         observations?: string,
     ) {
@@ -30,6 +32,7 @@ export class CreateCheckDto {
         this.part = part;
         this.area = area;
         this.receiver = receiver;
+        this.deliveredBy = deliveredBy;
         this.associatedId = associatedId
         this.observations = observations;
     }
@@ -45,5 +48,6 @@ export class UpdateCheckDto implements Partial<CreateCheckDto> {
     area?: string;
     observations?: string;
     receiver?: string;
+    deliveredBy?: string;
     associatedId?: number;
 }

@@ -10,6 +10,7 @@ export const createCheckSchema = Joi.object({
     area: Joi.string().required(),
     observations: Joi.string().optional().allow(''), // Observations can be an empty string or omitted
     receiver: Joi.string().required(),
+    deliveredBy: Joi.string().required(),
     associatedId: Joi.number().integer().positive().required(), // Relación con un asociado
 });
 
@@ -23,6 +24,7 @@ export const updateCheckSchema = Joi.object({
     area: Joi.string().optional(),
     observations: Joi.string().optional().allow(''), // Optional, can be an empty string
     receiver: Joi.string().optional(),
+    deliveredBy: Joi.string().optional(),
     associatedId: Joi.number().integer().positive().optional(), // Relación opcional
 });
 

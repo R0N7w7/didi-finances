@@ -14,27 +14,28 @@ datasource db {
 }
 
 model Check {
-  id            Int         @id @default(autoincrement())
-  project       String
+  id            Int          @id @default(autoincrement())
+  project       String       @db.Text    // Cambiar a Text
   checkNumber   Int
   amount        Float
   month         String
   requestNumber String
-  part          String
+  part          String       @db.Text    // Cambiar a Text
   area          String
-  observations  String?
+  observations  String?      @db.Text    // Cambiar a Text
   receiver      String
-  createdAt     DateTime    @default(now())
-  updatedAt     DateTime    @updatedAt
-  Associated    Associated? @relation(fields: [associatedId], references: [id])
+  deliveredBy   String       // Campo nuevo para quien entregó el cheque para firma
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+  Associated    Associated?  @relation(fields: [associatedId], references: [id])
   associatedId  Int?
 }
 
 model Associated {
   id        Int      @id @default(autoincrement())
-  name      String // Nombre de la persona o razón
+  name      String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  checks Check[] // Relación uno a muchos con cheques
+  checks Check[]
 }

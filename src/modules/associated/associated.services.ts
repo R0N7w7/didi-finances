@@ -12,7 +12,11 @@ export class AssociatedService {
 
     // Obtener todos los asociados
     async getAll() {
-        return await this.Prisma.associated.findMany();
+        return await this.Prisma.associated.findMany({
+            orderBy: {
+                createdAt: 'desc'
+            }
+        });
     }
 
     // Obtener un asociado por ID
@@ -22,6 +26,17 @@ export class AssociatedService {
                 id
             }
         });
+    }
+
+    async getOneWithChecks(id: number) {
+        return await this.Prisma.associated.findUnique({
+            where: {
+                id
+            },
+            include: {
+                checks: true
+            }
+        })
     }
 
     // Crear un nuevo asociado
